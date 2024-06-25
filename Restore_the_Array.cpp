@@ -10,30 +10,15 @@ int main()
     {
         int n;
         cin >> n;
-        ll a[n - 1]; 
-        for (auto &i : a)
-        {
+        vector<int> b(n - 1), a;
+        for (auto &i : b)
             cin >> i;
-        }
-        ll mini = *min_element(a, a + n - 1);
-        bool flag = true, flag1 = true;
-        for (int i = 0; i < n - 1; i++)
-        {
-            if (a[i] == mini && flag)
-            {
-                cout << mini << ' ' << mini << ' ';
-                flag = false;
-            }
-            else if (i > 0 && i < n - 2 && a[i] == a[i - 1] && a[i] > a[i + 1] && flag1 && a[i + 1] != mini)
-            { 
-                cout << a[i + 1] << ' ';
-                flag1 = false;
-            }
-            else
-            {
-                cout << a[i] << ' ';
-            }
-        }
+        a.push_back(b[0]);
+        for (int i = 0; i < n - 2; i++)
+            a.push_back(min(b[i], b[i + 1]));
+        a.push_back(b[n - 2]);
+        for (auto i : a)
+            cout << i << ' ';
         cout << endl;
     }
 }
